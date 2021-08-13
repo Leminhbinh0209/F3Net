@@ -336,7 +336,7 @@ class LFS_Head(nn.Module):
         N, C, W, H = x.size()
         S = self.window_size
         size_after = int((W - S + 8)/2) + 1
-        assert size_after ==  64 #149
+        assert size_after == 149
 
         # sliding window unfold and DCT
         x_unfold = self.unfold(x)   # [N, C * S * S, L]   L:block num
