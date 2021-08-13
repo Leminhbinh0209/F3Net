@@ -12,7 +12,7 @@ pretrained_settings = {
         'imagenet': {
             'url': 'http://data.lip6.fr/cadene/pretrainedmodels/xception-b5690688.pth',
             'input_space': 'RGB',
-            'input_size': [3, 128, 128],
+            'input_size': [3, 299, 299],
             'input_range': [0, 1],
             'mean': [0.5, 0.5, 0.5],
             'std': [0.5, 0.5, 0.5],
@@ -28,8 +28,8 @@ class F3Net(nn.Module):
     """
     def __init__(self, 
                  num_classes: int=2, 
-                 img_width: int=128, 
-                 img_height: int=128, 
+                 img_width: int=299, 
+                 img_height: int=299, 
                  LFS_window_size: int=10, 
                  LFS_M: int=6) -> None:
         super(F3Net, self).__init__()
@@ -46,8 +46,8 @@ class F3Net(nn.Module):
         self.fad_excep = self._init_xcep_fad()
         self.lfs_excep = self._init_xcep_lfs()
         
-        self.mix_block7 = MixBlock(c_in=728, width=8, height=8) # This param is depend on the input image size
-        self.mix_block12 = MixBlock(c_in=1024, width=4, height=4) # This param is depend on the input image size
+        self.mix_block7 = MixBlock(c_in=728, width=19, height=19) 
+        self.mix_block12 = MixBlock(c_in=1024, width=10, height=10) 
         self.excep_forwards = ['conv1', 'bn1', 'relu', 'conv2', 'bn2', 'relu', 
                                'block1', 'block2', 'block3', 'block4', 'block5', 'block6', 
                                'block7', 'block8', 'block9', 'block10' , 'block11', 'block12',
