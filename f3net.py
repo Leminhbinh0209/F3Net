@@ -93,17 +93,12 @@ class F3Net(nn.Module):
         return x
     
     def forward(self, x):
-        ### Two stream transform
         fad_input = self.fad_head(x)
         lfs_input = self.lfs_head(x)
-        ### Main forward
         x_fad, x_fls = self._features(fad_input, lfs_input)
-        ### Average pooling
         x_fad = self._norm_feature(x_fad)
         x_fls = self._norm_feature(x_fls)
-        ### Concatinate
         x_cat = torch.cat((x_fad, x_fls), dim=1)
-        ### Output
         x_drop = self.dp(x_cat)
         logit = self.fc(x_drop)
         return x_cat, logit
@@ -234,7 +229,6 @@ def xception(num_classes=1000, pretrained='imagenet'):
     return model
 
 def return_pytorch04_xception(pretrained=True):
-    # Raises warning "src not broadcastable to dst" but thats fine
     model = xception(pretrained=False)
     if pretrained:
         state_dict = torch.load(
@@ -246,9 +240,12 @@ def return_pytorch04_xception(pretrained=True):
  
     return model
 
-# Filter Module
 class Filter(nn.Module):
-    def __init__(self, size, band_start, band_end, use_learnable=True, norm=False):
+    def __init__(self, size, 
+                 band_start, 
+                 band_end, 
+                 use_learnable=True, 
+                 norm=False):
         super(Filter, self).__init__()
         self.use_learnable = use_learnable
 
@@ -276,11 +273,9 @@ class Filter(nn.Module):
             y = x * filt
         return y
 
-# FAD Module
 class FAD_Head(nn.Module):
     def __init__(self, size):
         super(FAD_Head, self).__init__()
-
         # init DCT matrix
         self._DCT_all = nn.Parameter(torch.tensor(DCT_mat(size)).float(), requires_grad=False)
         self._DCT_all_T = nn.Parameter(torch.transpose(torch.tensor(DCT_mat(size)).float(), 0, 1), requires_grad=False)
@@ -307,7 +302,7 @@ class FAD_Head(nn.Module):
         out = torch.cat(y_list, dim=1)    # [N, 12, 299, 299]
         return out
 
-# LFS Module
+
 class LFS_Head(nn.Module):
     def __init__(self, size, window_size, M):
         super(LFS_Head, self).__init__()
@@ -359,7 +354,9 @@ class LFS_Head(nn.Module):
             y_list.append(y)
         out = torch.cat(y_list, dim=1)  # [N, M, 149, 149]
         return out
+    
 class MixBlock(nn.Module):
+    
     def __init__(self, c_in, width, height):
         super(MixBlock, self).__init__()
         self.FAD_query = nn.Conv2d(c_in, c_in, (1,1))
