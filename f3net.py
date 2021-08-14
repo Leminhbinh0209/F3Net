@@ -360,8 +360,6 @@ class LFS_Head(nn.Module):
         out = torch.cat(y_list, dim=1)  # [N, M, 149, 149]
         return out
 class MixBlock(nn.Module):
-    # An implementation of the cross attention module in F3-Net
-    # Haven't added into the whole network yet
     def __init__(self, c_in, width, height):
         super(MixBlock, self).__init__()
         self.FAD_query = nn.Conv2d(c_in, c_in, (1,1))
