@@ -10,4 +10,4 @@ This implementation is mainly based on the desciption in the [paper](https://www
 Source code is mainly referenced from this [repo](https://github.com/yyk-wew/F3Net). <br />
 Download pre-trained XceptionNet from [here](http://data.lip6.fr/cadene/pretrainedmodels/xception-b5690688.pth).
 #
-*Star if you find it useful.*
+*Star if you find it useful.* ⭐
