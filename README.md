@@ -1,6 +1,7 @@
 # Thinking in frequency: Face forgery detection by mining frequency-aware clues
 
 <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Leminhbinh0209/F3Net?style=for-the-badge" height="25"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Leminhbinh0209/F3Net?style=for-the-badge" height="25"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/Leminhbinh0209/F3Net?style=for-the-badge" height="25">
+
 *European Conference on Computer Vision 2020* <br /> 
 
 <br />
