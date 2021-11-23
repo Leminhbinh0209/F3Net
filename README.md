@@ -1,6 +1,8 @@
 # Thinking in frequency: Face forgery detection by mining frequency-aware clues
-*European Conference on Computer Vision 2020* <br /> 
+
 <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Leminhbinh0209/F3Net?style=for-the-badge" height="25"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Leminhbinh0209/F3Net?style=for-the-badge" height="25"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/Leminhbinh0209/F3Net?style=for-the-badge" height="25">
+*European Conference on Computer Vision 2020* <br /> 
+
 <br />
 This implementation is mainly based on the desciption in the [paper](https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123570086.pdf) on top of XceptionNet. The inplementation has three models:
 * **MixBlock**: Two-stream Collaborative Framework (@ block 7 and block 12). If you change the input image size, revise the ```width``` and ```height``` parameters in lines ```49``` and ```50```.
